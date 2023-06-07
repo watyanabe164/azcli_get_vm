@@ -1,0 +1,16 @@
+name: azcli get vm
+on:
+  workflow_dispatch:
+
+jobs:
+  azcil_get_vm:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS_NABE}}
+
+      - name: az show vm ngfr151v
+        run: az vm show -o table -g "pro-nabehiro-001" -n "nbfr151v" -d
