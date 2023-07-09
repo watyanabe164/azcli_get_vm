@@ -1,1 +1,3 @@
 # azcli_get_vm
+github actionsを使って、AzureVM情報を取得して、その結果をblob storageに格納するまでの手順をつくった
+あらかじめaz loginをしているためsas-tokenを使用する必要はないのでaz loginを使わずにsas-tokenだけで転送する方法でもう一度トライしようと思う
