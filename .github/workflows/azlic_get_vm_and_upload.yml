@@ -1,0 +1,19 @@
+name: azcli get vm
+on:
+  workflow_dispatch:
+
+jobs:
+  azcil_get_vm:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: az show vm ngfr151v
+        run: az vm show --resource-group "pro-nabehiro-001" --name "nbfr151v" --query "{name:name, location:location, osType:storageProfile.osDisk.osType}" -o json > vm-info.json
+
+      - name: Upload to Blob Storage
+        run: az storage blob upload-batch --account-name "sanabehiro001" -d "con-nabehiro-001" --destination-path "/" -s .
